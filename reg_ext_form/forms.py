@@ -14,14 +14,22 @@ class ExtraInfoForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(ExtraInfoForm, self).__init__(*args, **kwargs)
         self.fields['accept_terms_of_use_of_personal_data'].required = True
+        self.fields['accept_privacy_policy'].required = True
 
     class Meta:
         model = ExtraInfo
-        fields = ('accept_terms_of_use_of_personal_data', )
+        fields = ('subscribe_to_news_updates', 'accept_terms_of_use_of_personal_data', 'accept_privacy_policy')
         labels = {
+            'subscribe_to_news_updates': ("Je souhaite être informé-e de l'actualité de Rue89/l'Obs et de "
+                                          "la parution de ses futures MOOCs"),
             'accept_terms_of_use_of_personal_data': mark_safe(
-                u"""j'accepte les <a href="{}">conditions d'utilisation des données personnelles</a>""".format(
+                """j'accepte les <a href="{}">conditions d'utilisation des données personnelles</a>""".format(
                     reverse_lazy('tos')
                 )
-            )
+            ),
+            'accept_privacy_policy': mark_safe(
+                """J’accepte la <a href="{}">politique de confidentialité</a> de Rue89 MOOC""".format(
+                    reverse_lazy('privacy')
+                )
+            ),
         }

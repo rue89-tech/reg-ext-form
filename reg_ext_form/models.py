@@ -13,6 +13,14 @@ class ExtraInfo(models.Model):
     The form that wraps this model is in the forms.py file.
     """
     user = models.OneToOneField(USER_MODEL, null=True)
+    subscribe_to_news_updates = models.BooleanField(
+        "Je souhaite être informé-e de l'actualité de Rue89/l'Obs et de la parution de ses futures MOOCs",
+        blank=True,
+        default=False
+    )
     accept_terms_of_use_of_personal_data = models.BooleanField(
         "j'accepte les conditions d'utilisation des données personnelles"
+    )
+    accept_privacy_policy = models.BooleanField(
+        "J’accepte la politique de confidentialité de Rue89 MOOC"
     )
